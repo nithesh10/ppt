@@ -4,6 +4,7 @@ import ProgressBar from './components/ProgressBar';
 import SlideIndicator from './components/SlideIndicator';
 import SlideOverview from './components/SlideOverview';
 import SlideContainer from './components/SlideContainer';
+import PillarBadge from './components/PillarBadge';
 
 import Slide01_Opening from './slides/Slide01_Opening';
 import Slide02_TrustTransition from './slides/Slide02_TrustTransition';
@@ -33,10 +34,22 @@ const slides = [
   Slide12_Closing,
 ];
 
+// Map slide index to pillar number (null = no pillar badge)
+// Slide index → Pillar number
+// Slides 3 (idx 2) = Pillar 1
+// Slides 4-8 (idx 3-7) = Pillar 2
+// Slides 9-10 (idx 8-9) = Pillar 3
+const slidePillarMap = {
+  2: 1,                          // Slide 3 → Pillar 1
+  3: 2, 4: 2, 5: 2, 6: 2, 7: 2, // Slides 4-8 → Pillar 2
+  8: 3, 9: 3,                    // Slides 9-10 → Pillar 3
+};
+
 function App() {
   const nav = useSlideNavigation(slides.length);
   const CurrentSlide = slides[nav.current];
   const isLastSlide = nav.current === slides.length - 1;
+  const currentPillar = slidePillarMap[nav.current] || null;
 
   const handleClick = () => {
     if (nav.showOverview) return;
@@ -52,9 +65,16 @@ function App() {
       <ProgressBar current={nav.current} total={nav.totalSlides} />
 
       {/* Logo top-right */}
-      <div className="fixed top-4 right-6 z-50">
+      <div className="fixed top-5 right-6 z-50">
         <img src="/valura-logo.jpg" alt="Valura" className="w-10 h-10 rounded-lg shadow-md" />
       </div>
+
+      {/* Pillar badge top-left */}
+      <AnimatePresence mode="wait">
+        {currentPillar && (
+          <PillarBadge key={currentPillar} pillar={currentPillar} />
+        )}
+      </AnimatePresence>
 
       <AnimatePresence mode="wait">
         <SlideContainer slideKey={nav.current}>

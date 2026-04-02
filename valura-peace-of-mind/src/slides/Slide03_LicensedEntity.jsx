@@ -52,14 +52,6 @@ export default function Slide03_LicensedEntity({ phase, registerPhases, slideInd
       <div className="flex items-center gap-14 max-w-6xl w-full">
         {/* Left text */}
         <div className="flex-1">
-          <motion.div
-            className="text-gold text-sm font-medium tracking-[0.2em] uppercase mb-5"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Pillar 1
-          </motion.div>
           <motion.h2
             className="text-4xl md:text-5xl font-bold text-text-primary leading-tight mb-8"
             initial={{ opacity: 0, x: -30 }}
