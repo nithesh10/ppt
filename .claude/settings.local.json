@@ -6,7 +6,10 @@
       "Bash(npx vite:*)",
       "mcp__Claude_Preview__preview_start",
       "Bash(node -e \":*)",
-      "Bash(ls F:/claude_code/ppt/*.png F:/claude_code/ppt/*.jpg F:/claude_code/ppt/*.svg F:/claude_code/ppt/*.jpeg F:/claude_code/ppt/*.webp)"
+      "Bash(ls F:/claude_code/ppt/*.png F:/claude_code/ppt/*.jpg F:/claude_code/ppt/*.svg F:/claude_code/ppt/*.jpeg F:/claude_code/ppt/*.webp)",
+      "Bash(for f:*)",
+      "Bash(do sed:*)",
+      "Bash(done)"
     ]
   }
 }

@@ -39,19 +39,30 @@ function App() {
   const isLastSlide = nav.current === slides.length - 1;
 
   const handleClick = () => {
-    if (!isLastSlide) nav.next();
+    if (nav.showOverview) return;
+    if (isLastSlide && (nav.phase >= (nav.current === 11 ? 1 : 0))) return;
+    nav.advance();
   };
 
   return (
     <div
-      className="w-screen h-screen bg-navy relative overflow-hidden cursor-pointer select-none"
+      className="w-screen h-screen bg-bg relative overflow-hidden cursor-pointer select-none"
       onClick={handleClick}
     >
       <ProgressBar current={nav.current} total={nav.totalSlides} />
 
+      {/* Logo top-right */}
+      <div className="fixed top-4 right-6 z-50">
+        <img src="/valura-logo.jpg" alt="Valura" className="w-10 h-10 rounded-lg shadow-md" />
+      </div>
+
       <AnimatePresence mode="wait">
         <SlideContainer slideKey={nav.current}>
-          <CurrentSlide />
+          <CurrentSlide
+            phase={nav.phase}
+            registerPhases={nav.registerPhases}
+            slideIndex={nav.current}
+          />
         </SlideContainer>
       </AnimatePresence>
 
@@ -61,13 +72,13 @@ function App() {
       <AnimatePresence>
         {!nav.hasInteracted && (
           <motion.div
-            className="fixed bottom-6 left-6 text-text-muted text-sm z-50"
+            className="fixed bottom-6 left-8 text-text-muted text-sm z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.6 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Press anywhere to continue
+            Tap anywhere to continue
           </motion.div>
         )}
       </AnimatePresence>

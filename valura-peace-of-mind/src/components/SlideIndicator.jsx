@@ -8,7 +8,7 @@ export default function SlideIndicator({ current, total }) {
           key={i}
           className="w-2 h-2 rounded-full cursor-pointer"
           animate={{
-            backgroundColor: i === current ? '#4EA8DE' : '#5A8BB0',
+            backgroundColor: i === current ? '#2E7D32' : '#C0C8D0',
             scale: i === current ? 1.3 : 1,
           }}
           transition={{ duration: 0.3 }}

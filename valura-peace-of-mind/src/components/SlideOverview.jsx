@@ -15,7 +15,7 @@ export default function SlideOverview({ show, current, onSelect, onClose }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[100] bg-navy/95 flex items-center justify-center"
+          className="fixed inset-0 z-[100] bg-white/95 backdrop-blur-sm flex items-center justify-center"
           onClick={onClose}
         >
           <div className="grid grid-cols-4 gap-4 p-8 max-w-4xl" onClick={(e) => e.stopPropagation()}>
